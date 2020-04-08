@@ -1,0 +1,10 @@
+.output-block {
+    width: 50%;
+    height: auto;
+    border: 1px solid black;
+    background: aliceblue;
+    margin: 0 auto;
+    text-align: center;
+    padding: 5%;
+    font-size: large;
+}
