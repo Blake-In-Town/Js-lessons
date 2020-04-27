@@ -1,4 +1,90 @@
 'use strict';
+
+(function() {  
+
+function User (mass) {
+
+    this.firstName = mass[0];
+    this.lastName = mass[1];
+    this.date = new Date();
+
+}
+
+function UserList () {
+
+    let users = [];
+
+    this.add = function (element) {
+
+        users.push(element);
+
+    }
+
+    this.check = function (inputUser) {
+
+        for (let i = 0; i < users.length; i++) 
+        { 
+            if (inputUser.firstName != users[i].firstName && inputUser.lastName != users[i].lastName) {
+                
+            }
+            else {
+                return false;
+            }
+        }
+
+        return true;
+
+    }
+
+    this.showAll = function () {  
+
+        for (let i = 0; i < users.length; i++) {
+
+            console.log(users[i]);
+
+        }
+
+    }
+
+}
+
+function fillList () {
+
+    let enter = prompt('Enter user','FirstName LastName');
+
+    if ( enter == null)  return undefined;
+
+    else {
+
+        enter = enter.split(' ');
+
+        if ( enter.length > 2 || regexp.test(enter) == true )  
+        {   
+            return fillList();
+        }
+
+        let newUser = new User(enter);
+
+        if (list.check(newUser)) list.add(newUser);
+
+        return fillList();
+
+    }
+
+}
+
+let regexp = /[0123456789]/;
+
+let list = new UserList();
+
+fillList();
+
+list.showAll();
+
+})();
+
+
+
 //ФУНКЦИИ КОНСТРУКТОРЫ (пишутся с большой буквы)
 
 // function User(firstName, lastName) {  
@@ -45,42 +131,3 @@
 
 // 6. После нажатия «Отмена» выведите на экран (в консоль или при помощи alert) список всех пользователей с именами и датами регистрации (используйте для этого метод getAllUsers).
 
-function User (enter) {
-
-    this.firstName = enter[0];
-    this.lastName = enter[1];
-    this.regDate = new Date();
-
-}
-
-function UsersList () {
-
-    let users = [];
-
-    this.add = function (User) {  
-        users.push(User);
-    }
-
-    this.getAllUsers = function () {  
-        for ( var i = 0; i < users.length; i++ ) {
-            console.log(users[i]);
-        }
-    }
-}
-
-let firstListOfUsers = new UsersList();
-
-let enterUser = prompt('Enter user');
-let arrayOfName;
-
-while ( enterUser != null ) {
-
-    arrayOfName = new User( enterUser.split(' ') );
-
-    firstListOfUsers.add(arrayOfName);
-    
-    enterUser = prompt('Enter user');
-    
-}
-
-firstListOfUsers.getAllUsers();
