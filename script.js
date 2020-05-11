@@ -1,133 +1,54 @@
-'use strict';
+// Создать иерархию сущностей (конструкторов, из которых можно создать экземпляры объектов):
 
-(function() {  
+// базовый конструктор «Транспортное средство» с общими для всех транспортных средств свойствами и методами (на ваше усмотрение);
 
-function User (mass) {
+// дочерние конструкторы: автомобиль, самолет, корабль, которые наследуют общие свойства и методы от родительского;
 
-    this.firstName = mass[0];
-    this.lastName = mass[1];
-    this.date = new Date();
+// продемонстрировать, как дочерние сущности могут переопределять родительские свойства и методы в соответствии со своим собственным поведением.
 
-}
+function Vehicle ( manufacturer, model ) {
 
-function UserList () {
-
-    let users = [];
-
-    this.add = function (element) {
-
-        users.push(element);
-
-    }
-
-    this.check = function (inputUser) {
-
-        for (let i = 0; i < users.length; i++) 
-        { 
-            if (inputUser.firstName != users[i].firstName && inputUser.lastName != users[i].lastName) {
-                
-            }
-            else {
-                return false;
-            }
-        }
-
-        return true;
-
-    }
-
-    this.showAll = function () {  
-
-        for (let i = 0; i < users.length; i++) {
-
-            console.log(users[i]);
-
-        }
-
-    }
+    this.manufacturer = manufacturer;
+    this.model = model;
 
 }
 
-function fillList () {
+Vehicle.prototype.introduce = function () {
+    console.log('this is ' + this.model + ' produced by ' + this.manufacturer);
+}
 
-    let enter = prompt('Enter user','FirstName LastName');
 
-    if ( enter == null)  return undefined;
+function Auto ( manufacturer, model ) {
 
-    else {
+    Vehicle.apply( this, arguments );
 
-        enter = enter.split(' ');
-
-        if ( enter.length > 2 || regexp.test(enter) == true )  
-        {   
-            return fillList();
-        }
-
-        let newUser = new User(enter);
-
-        if (list.check(newUser)) list.add(newUser);
-
-        return fillList();
-
-    }
+    this.type = 'car';
 
 }
 
-let regexp = /[0123456789]/;
-
-let list = new UserList();
-
-fillList();
-
-list.showAll();
-
-})();
+Auto.prototype.introduce = function () {
+    console.log('this is ' + this.model + ' produced by ' + this.manufacturer);
+}
 
 
+function Fly ( manufacturer, model ) {
 
-//ФУНКЦИИ КОНСТРУКТОРЫ (пишутся с большой буквы)
+    Vehicle.apply( this, arguments );
 
-// function User(firstName, lastName) {  
-//     this.firstName = firstName;
-//     this.lastName = lastName;
+    this.type = 'airplane';
 
-//     this.getFullName = function() {
-//         return this.firstName + ' ' + this.lastName;
-//     }
-// }
+}
 
-// // Экземпляры объектов
-// var myUser = new User('Alex','Bead');
-// var anotherUser = new User('NotAlex','NotBead');
+function Ship ( manufacturer, model ) {
 
+    Vehicle.apply( this, arguments );
 
-// $(function(){
-    
-//     $('.output-block').append(test());
+    this.type = 'ship';
 
-//     function test(some) {
-//         return 5 + 5;
-//     }
-    
-// });
+}
 
-// Написать простой прототип системы регистрации пользователей. Для этого используйте две функции-конструктора:
+var firstAuto = new Auto('Ford','Focus');
 
-// 1. User, которая создает объект типа «пользователь» со следующими свойствами: { // имя firstName: ‘', // фамилия lastName: '’, // дата и время регистрации regDate: ''}. Объекты типа User предназначены для сохранения каждой отдельной записи о пользователе.
+var firstFly = new Fly('Boieng','Jet 2000');
 
-// 2. UserList, которая создает объект типа “список пользователей” со следующими свойствами и методами: { // внутреннее свойство-массив, в которое будут попадать объекты типа User users: [], // метод получает в качестве параметра объект типа User и сохраняет его в массив users add: function(user) {}, // метод возвращает список пользователей из массива users getAllUsers: function() {}}. Объекты типа UserList предназначены для хранения множества записей типа User. 
-
-// При запуске программы должно происходить:
-
-// 1. Создавать новый экземпляр объекта UserList (с пустым свойством-массивом users).
-
-// 2. Открываться диалог prompt с предложением ввести имя и фамилию пользователя для регистрации (одной строкой через пробел).
-
-// 3. После нажатия ОК должен создаваться новый экземпляр объекта User с заполнением свойств firstName, lastName и regDate (текущая дата и время).
-
-// 4. Созданный экземпляр объекта должен сохраняться в свойство-массив users созданного ранее объекта типа UserList (при помощи метода add).
-
-// 5. Диалог prompt должен повторяться, пока пользователь не нажмет “Отмена”.
-
-// 6. После нажатия «Отмена» выведите на экран (в консоль или при помощи alert) список всех пользователей с именами и датами регистрации (используйте для этого метод getAllUsers).
-
+var firstShip = new Ship('Вечеславав Михайлович','Сделал сам в свободное время');
