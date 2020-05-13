@@ -6,49 +6,133 @@
 
 // продемонстрировать, как дочерние сущности могут переопределять родительские свойства и методы в соответствии со своим собственным поведением.
 
-function Vehicle ( manufacturer, model ) {
+// let Vehicle = (function () {  
 
-    this.manufacturer = manufacturer;
-    this.model = model;
+//     let Vehicle = function (settings) {
+//         this.manufactures = settings.manufactures || 'LADA';
+//         this.model = settings.model || 'Lada-9000-ULTRA-TURBO';
+//         this.engine = true;
+//         this.engNum = settings.engNum || 1;
+//     };
 
-}
+//     Vehicle.prototype.engineOn = function () {
+//         for (let i = 0; i < this.engNum; i++) {
+//             console.log(`engine start succesfull!`);
+//         }
+//     }
 
-Vehicle.prototype.introduce = function () {
-    console.log('this is ' + this.model + ' produced by ' + this.manufacturer);
-}
+//     Vehicle.prototype.introduce = function () {
+//         console.log(`this is ${this.model} produced by ${this.manufactures}`);
+//     };
 
+//     return Vehicle;
+// })();
 
-function Auto ( manufacturer, model ) {
+// let Auto = (function () {
+    
+//     let Auto = function (settings) {
+//         Vehicle.apply(this, arguments);
+//         this.type = 'Auto';
+//     }
 
-    Vehicle.apply( this, arguments );
+//     Auto.prototype = Object.create(Vehicle.prototype);
+//     Auto.prototype.constructor = Auto;
 
-    this.type = 'car';
+//     return Auto;
+// })();
 
-}
+// let ford = new Auto({
+//     manufactures: 'FORD',
+//     model: 'Focus'
+// })
 
-Auto.prototype.introduce = function () {
-    console.log('this is ' + this.model + ' produced by ' + this.manufacturer);
-}
+// (function () {
 
+    class Vehicle {
+        constructor(args) {
+            this.manufactures = args.manufactures;
+            this.model = args.model;
+            this.engine = args.engine || 0;
+            this.power = args.power || 100;
+        }
+    
+        introduce() {
+            console.log(`this is ${this.model} produced by ${this.manufactures}`);
+        }
 
-function Fly ( manufacturer, model ) {
+        move() {
+            if (this.engine >= 1) console.log(`vehicle ${this.class} is move`);
+            else console.log(`engine out!`);
+        }
 
-    Vehicle.apply( this, arguments );
+        stop() {
+            console.log(`vehicle ${this.class} is stop`);
+        }
 
-    this.type = 'airplane';
+    }
 
-}
+    class Auto extends Vehicle {
+        constructor(args) {
+            super(args);
+            this.class = 'Auto';
+        }
+        
+    }
+    
+    class Airplane extends Vehicle {
+        constructor(args) {
+            super(args);
+            this.class = 'Airplane';
+        }
+    }
 
-function Ship ( manufacturer, model ) {
+    class Ship extends Vehicle {
+        constructor(args) {
+            super(args);
+            this.class = 'Ship';    
+        }
+    }
 
-    Vehicle.apply( this, arguments );
+    let vehicle = new Vehicle({
+        manufactures: 'Ford',
+        model: 'Focus',
+        engine: 50,
+        power: 700
+    });
 
-    this.type = 'ship';
+    let ford = new Auto ({
+        manufactures: 'Audi',
+        model: 'TT',
+        engine: 1,
+        power: 700
+    });
 
-}
+    let jet = new Airplane({
+        model: 'Super Jet',
+        manufactures:'Boeing',
+        engine: 6,
+        power: 3000
+    });
 
-var firstAuto = new Auto('Ford','Focus');
+    let boat = new Ship({
+        manufactures: 'Гараж',
+        model: 'Деревянная',
+        engine: 0,
+        power: 20
+    });
+    
+    vehicle.introduce();
+    vehicle.move();
 
-var firstFly = new Fly('Boieng','Jet 2000');
+    ford.introduce();
+    ford.move();
 
-var firstShip = new Ship('Вечеславав Михайлович','Сделал сам в свободное время');
+    jet.introduce();
+    jet.move();
+
+    boat.introduce();
+    boat.move();
+
+// })();
+
+    
