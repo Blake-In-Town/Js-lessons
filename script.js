@@ -54,6 +54,7 @@
             this.model = args.model;
             this.engine = args.engine || 0;
             this.power = args.power || 100;
+            this.speed = args.speed || 0;
         }
     
         introduce() {
@@ -76,6 +77,11 @@
             super(args);
             this.class = 'Auto';
         }
+
+        move() {
+            super.move();
+            console.log('this method redefine by Auto class \n \n');
+        }
         
     }
     
@@ -84,6 +90,11 @@
             super(args);
             this.class = 'Airplane';
         }
+
+        move() {
+            super.move();
+            console.log('status: flying \n \n');
+        }
     }
 
     class Ship extends Vehicle {
@@ -91,16 +102,21 @@
             super(args);
             this.class = 'Ship';    
         }
+
+        move() {
+            super.move();
+            console.log('Налегли, погребли! \n \n');
+        }
     }
 
-    let vehicle = new Vehicle({
+    let ford = new Auto({
         manufactures: 'Ford',
         model: 'Focus',
         engine: 50,
         power: 700
     });
 
-    let ford = new Auto ({
+    let audi = new Auto ({
         manufactures: 'Audi',
         model: 'TT',
         engine: 1,
@@ -120,12 +136,12 @@
         engine: 0,
         power: 20
     });
-    
-    vehicle.introduce();
-    vehicle.move();
 
     ford.introduce();
     ford.move();
+
+    audi.introduce();
+    audi.move()
 
     jet.introduce();
     jet.move();
