@@ -1,154 +1,54 @@
-// Создать иерархию сущностей (конструкторов, из которых можно создать экземпляры объектов):
+// Написать программу, которая:
 
-// базовый конструктор «Транспортное средство» с общими для всех транспортных средств свойствами и методами (на ваше усмотрение);
+// просит пользователя ввести кусок JavaScript-кода;
+// пытается запустить этот код в строгом режиме (strict mode);
+// если в коде возникла ошибка, перехватывает ее и выводит соответствующее сообщение.
 
-// дочерние конструкторы: автомобиль, самолет, корабль, которые наследуют общие свойства и методы от родительского;
+$(document).ready(function(){
 
-// продемонстрировать, как дочерние сущности могут переопределять родительские свойства и методы в соответствии со своим собственным поведением.
-
-// let Vehicle = (function () {  
-
-//     let Vehicle = function (settings) {
-//         this.manufactures = settings.manufactures || 'LADA';
-//         this.model = settings.model || 'Lada-9000-ULTRA-TURBO';
-//         this.engine = true;
-//         this.engNum = settings.engNum || 1;
-//     };
-
-//     Vehicle.prototype.engineOn = function () {
-//         for (let i = 0; i < this.engNum; i++) {
-//             console.log(`engine start succesfull!`);
-//         }
-//     }
-
-//     Vehicle.prototype.introduce = function () {
-//         console.log(`this is ${this.model} produced by ${this.manufactures}`);
-//     };
-
-//     return Vehicle;
-// })();
-
-// let Auto = (function () {
     
-//     let Auto = function (settings) {
-//         Vehicle.apply(this, arguments);
-//         this.type = 'Auto';
-//     }
-
-//     Auto.prototype = Object.create(Vehicle.prototype);
-//     Auto.prototype.constructor = Auto;
-
-//     return Auto;
-// })();
-
-// let ford = new Auto({
-//     manufactures: 'FORD',
-//     model: 'Focus'
-// })
-
-// (function () {
-
-    class Vehicle {
-        constructor(args) {
-            this.manufactures = args.manufactures;
-            this.model = args.model;
-            this.engine = args.engine || 0;
-            this.power = args.power || 100;
-            this.speed = args.speed || 0;
-        }
-    
-        introduce() {
-            console.log(`this is ${this.model} produced by ${this.manufactures}`);
-        }
-
-        move() {
-            if (this.engine >= 1) console.log(`vehicle ${this.class} is move`);
-            else console.log(`engine out!`);
-        }
-
-        stop() {
-            console.log(`vehicle ${this.class} is stop`);
-        }
-
-    }
-
-    class Auto extends Vehicle {
-        constructor(args) {
-            super(args);
-            this.class = 'Auto';
-        }
-
-        move() {
-            super.move();
-            console.log('this method redefine by Auto class \n \n');
-        }
+   
+    $('#confirm').click(function() { 
         
-    }
+        let code = $('#inputBlock').val();
+        try {
+            eval(code);
+        }
+        catch (ex) {
+            console.log('Обнаружена ошибка');
+            console.log(ex);
+        }
     
-    class Airplane extends Vehicle {
-        constructor(args) {
-            super(args);
-            this.class = 'Airplane';
-        }
-
-        move() {
-            super.move();
-            console.log('status: flying \n \n');
-        }
-    }
-
-    class Ship extends Vehicle {
-        constructor(args) {
-            super(args);
-            this.class = 'Ship';    
-        }
-
-        move() {
-            super.move();
-            console.log('Налегли, погребли! \n \n');
-        }
-    }
-
-    let ford = new Auto({
-        manufactures: 'Ford',
-        model: 'Focus',
-        engine: 50,
-        power: 700
     });
 
-    let audi = new Auto ({
-        manufactures: 'Audi',
-        model: 'TT',
-        engine: 1,
-        power: 700
+});
+
+
+// Написать функцию filterByType, которая принимает любое кол-во аргументов:
+
+// первый аргумент — это тип данных (number, string или boolean), по которому нужно отфильтровать следующие аргументы (со 2-го и далее);
+// аргументы, начиная со 2-го и далее — любые значения;
+// функция должна возвращать массив с теми аргументами, которые соответствуют типу данных, переданному в первом аргументе.
+
+// Пример вызова:
+// filterByType(’string’, 10, 20, ‘a’, ‘b’, true, false);
+// возвращает массив [‘a’, ‘b']
+
+function filterByType() {
+
+    let filterValue = arguments[0];
+    console.log(filterValue);
+
+    let unsort = Array.prototype.slice.call(arguments);
+    unsort.join(', ');
+    unsort = unsort.splice(1);
+
+    let sortArray = unsort.filter( function(elem){
+        console.log(typeof(elem));
+        return typeof(elem) == filterValue;
     });
-
-    let jet = new Airplane({
-        model: 'Super Jet',
-        manufactures:'Boeing',
-        engine: 6,
-        power: 3000
-    });
-
-    let boat = new Ship({
-        manufactures: 'Гараж',
-        model: 'Деревянная',
-        engine: 0,
-        power: 20
-    });
-
-    ford.introduce();
-    ford.move();
-
-    audi.introduce();
-    audi.move()
-
-    jet.introduce();
-    jet.move();
-
-    boat.introduce();
-    boat.move();
-
-// })();
-
     
+    return sortArray;
+}
+
+console.log( filterByType( 'string', 1, 2, 3, 4, true, false, true, 'uop', 'rui'));
