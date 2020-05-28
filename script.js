@@ -9,14 +9,19 @@ $(document).ready(function(){
     
    
     $('#confirm').click(function() { 
+
+        $('#log-block').html(null);
         
         let code = $('#inputBlock').val();
         try {
             eval(code);
         }
         catch (ex) {
-            console.log('Обнаружена ошибка');
-            console.log(ex);
+            $('#log-block').html('Обнаружена ошибка');
+            $('#log-block').html(ex);
+            $('#log-block').css({
+                'color':'red'
+            })
         }
     
     });
@@ -51,4 +56,4 @@ function filterByType() {
     return sortArray;
 }
 
-console.log( filterByType( 'string', 1, 2, 3, 4, true, false, true, 'uop', 'rui'));
+console.log( filterByType( 'boolean', 1, 2, 3, 4, true, false, true, 'uop', 'rui'));

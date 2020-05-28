@@ -5,6 +5,10 @@
     background: aliceblue;
     margin: 0 auto;
     text-align: center;
-    padding: 5%;
+    padding: 1%;
     font-size: large;
+}
+
+#log-block {
+    width: 100%;
 }
