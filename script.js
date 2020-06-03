@@ -1,59 +1,50 @@
-// Написать программу, которая:
+// Написать простое ToDo App — список задач с возможностью добавления новых пунктов и смены статуса готовности каждого пункта (сделано/не сделано). Страница должна состоять из:
+// 1. самого списка задач (нумерованный список <ol>, пункты-задачи — <li>);
+//  2. поля для ввода названия новой задачи (<input type=“text”);
+//  3. кнопки «Добавить».
+// При нажатии на кнопку «Добавить» задача добавляется в конец списка в качестве нового пункта <li>.
+// Если название задачи не введено, то появляется ошибка (alert или другая реализация) с просьбой заполнить поле.
+// Считать значение, введенное в поле, можно при помощи document.querySelector(‘input’).value.
+// При клике на любую задачу в списке она помечается как выполненная (становится зачеркнутой, тут пригодится CSS-свойство text-decoration: line-through). При повторном клике зачеркивание исчезает.
 
-// просит пользователя ввести кусок JavaScript-кода;
-// пытается запустить этот код в строгом режиме (strict mode);
-// если в коде возникла ошибка, перехватывает ее и выводит соответствующее сообщение.
+'use strict'
 
-$(document).ready(function(){
 
+let btnAdd = document.querySelector('#adding');
+let headerDo;
+let bodyDo;
+let doList = document.querySelector('.list-group');
+
+let addingFunction = function () {  
+
+    document.querySelector('.text-secondary').classList.add('hide');
+    headerDo = document.querySelector('#title').value;
+    bodyDo = document.querySelector('#description').value;
+
+    if (headerDo == '') {
+        alert('Заполните поле с названием');
+        return false;
+    }
+    else {
+        headerDo = document.querySelector('#title').value + ': ';
+    }
+
+    document.querySelector('#title').value = '';
+    document.querySelector('#description').value = '';
+
+    let doBlock = document.createElement('li');
+    doBlock.classList.add('list-group-item');
+    doBlock.innerHTML = `<p class="active-task task"> ${headerDo} ${bodyDo} </p>`;
+
+    doList.appendChild(doBlock);
+    document.querySelector('.empty').setAttribute('style','display: none');
     
-   
-    $('#confirm').click(function() { 
-
-        $('#log-block').html(null);
-        
-        let code = $('#inputBlock').val();
-        try {
-            eval(code);
-        }
-        catch (ex) {
-            $('#log-block').html('Обнаружена ошибка');
-            $('#log-block').html(ex);
-            $('#log-block').css({
-                'color':'red'
-            })
-        }
-    
-    });
-
-});
-
-
-// Написать функцию filterByType, которая принимает любое кол-во аргументов:
-
-// первый аргумент — это тип данных (number, string или boolean), по которому нужно отфильтровать следующие аргументы (со 2-го и далее);
-// аргументы, начиная со 2-го и далее — любые значения;
-// функция должна возвращать массив с теми аргументами, которые соответствуют типу данных, переданному в первом аргументе.
-
-// Пример вызова:
-// filterByType(’string’, 10, 20, ‘a’, ‘b’, true, false);
-// возвращает массив [‘a’, ‘b']
-
-function filterByType() {
-
-    let filterValue = arguments[0];
-    console.log(filterValue);
-
-    let unsort = Array.prototype.slice.call(arguments);
-    unsort.join(', ');
-    unsort = unsort.splice(1);
-
-    let sortArray = unsort.filter( function(elem){
-        console.log(typeof(elem));
-        return typeof(elem) == filterValue;
-    });
-    
-    return sortArray;
 }
 
-console.log( filterByType( 'boolean', 1, 2, 3, 4, true, false, true, 'uop', 'rui'));
+btnAdd.addEventListener('click', addingFunction);
+
+document
+    .querySelector('.list-group')
+    .addEventListener('click', function(event){
+        event.target.classList.toggle('complete-task');
+    });

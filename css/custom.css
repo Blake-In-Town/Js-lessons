@@ -1,0 +1,71 @@
+html, body {
+	margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    font-family: arial;
+}
+
+/*list block start*/
+	.list {
+		margin-top: 65px;
+	}
+
+	.task {
+		background-color: white;
+	}
+
+	.expand {
+		
+	}
+
+	.empty-element {
+		background-color: white;
+		width: auto;
+		height: 3.5rem;
+		display: block;
+	}
+		.empty-element li {
+			background-color: white;
+		}
+	
+	.complete-task {
+		text-decoration: line-through;
+	}
+
+	.active-task {
+		margin: 0;
+	}
+/*list block end*/
+/*create block start*/
+	.create {	
+		margin-top: 65px;
+	}
+
+	#property {
+		background: white;
+		border: 1px solid rgba(0,0,0,.125);
+		border-radius: 5px;
+	}
+
+	#title {
+		resize: none;
+		background-color: #f5f5f5;
+	}
+
+	#description {
+		height: 230px;
+		resize: none;
+		background-color: #f5f5f5;
+	}
+
+	#adding {
+		font-size: 16px;
+		border: none;
+		color: white;
+		background-color: #2174fd;
+		margin-top: 30px;
+		width: 255px;
+		height: 55px;
+		
+	}
+/*create block end*/
