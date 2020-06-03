@@ -10,12 +10,14 @@ html, body {
 		margin-top: 65px;
 	}
 
-	.task {
-		background-color: white;
+	.num-list {
+		margin: 5px 0px;
 	}
 
-	.expand {
-		
+	.task-list {
+		background-color: white;
+		border: 1px solid rgba(0,0,0,.125);
+		border-radius: 5px;
 	}
 
 	.empty-element {

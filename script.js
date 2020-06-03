@@ -13,7 +13,7 @@
 let btnAdd = document.querySelector('#adding');
 let headerDo;
 let bodyDo;
-let doList = document.querySelector('.list-group');
+let doList = document.querySelector('.num-list');
 
 let addingFunction = function () {  
 
@@ -33,7 +33,7 @@ let addingFunction = function () {
     document.querySelector('#description').value = '';
 
     let doBlock = document.createElement('li');
-    doBlock.classList.add('list-group-item');
+    doBlock.classList.add('num-list-item');
     doBlock.innerHTML = `<p class="active-task task"> ${headerDo} ${bodyDo} </p>`;
 
     doList.appendChild(doBlock);
@@ -44,7 +44,7 @@ let addingFunction = function () {
 btnAdd.addEventListener('click', addingFunction);
 
 document
-    .querySelector('.list-group')
+    .querySelector('.num-list')
     .addEventListener('click', function(event){
         event.target.classList.toggle('complete-task');
     });
