@@ -14,6 +14,7 @@ let btnAdd = document.querySelector('#adding');
 let headerDo;
 let bodyDo;
 let doList = document.querySelector('.num-list');
+let headerList = [];
 
 let addingFunction = function () {  
 
@@ -26,7 +27,18 @@ let addingFunction = function () {
         return false;
     }
     else {
-        headerDo = document.querySelector('#title').value + ': ';
+        headerDo = document.querySelector('#title').value;
+    }
+
+    for (let header of headerList) {
+        if (headerDo == header && confirm('Вы добавляете задачу которая уже есть в списке, хотите продолжить?')) {
+            
+        }
+        else {
+            document.querySelector('#title').value = '';
+            document.querySelector('#description').value = '';        
+            return false;
+        }
     }
 
     document.querySelector('#title').value = '';
@@ -34,9 +46,10 @@ let addingFunction = function () {
 
     let doBlock = document.createElement('li');
     doBlock.classList.add('num-list-item');
-    doBlock.innerHTML = `<p class="active-task task"> ${headerDo} ${bodyDo} </p>`;
+    doBlock.innerHTML = `<p class="active-task task"> ${headerDo} - ${bodyDo} </p>`;
 
     doList.appendChild(doBlock);
+    headerList.push(headerDo);
     document.querySelector('.empty').setAttribute('style','display: none');
     
 }
