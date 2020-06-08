@@ -9,36 +9,60 @@
 
 'use strict'
 
-
 let btnAdd = document.querySelector('#adding');
 let headerDo;
 let bodyDo;
 let doList = document.querySelector('.num-list');
 let headerList = [];
+let flag;
 
 let addingFunction = function () {  
 
-    document.querySelector('.text-secondary').classList.add('hide');
     headerDo = document.querySelector('#title').value;
     bodyDo = document.querySelector('#description').value;
+    flag = 1;
 
     if (headerDo == '') {
+
         alert('Заполните поле с названием');
         return false;
+
     }
     else {
+
         headerDo = document.querySelector('#title').value;
+
     }
 
     for (let header of headerList) {
-        if (headerDo == header && confirm('Вы добавляете задачу которая уже есть в списке, хотите продолжить?')) {
-            
+
+        if (headerDo == header) {
+
+            flag = 0;
+            let mark = confirm('Вы добавляете задачу которая уже есть в списке, хотите продолжить?');
+
+            if (mark == true) {
+
+                break;
+
+            }
+
+            else {
+
+                document.querySelector('#title').value = '';
+                document.querySelector('#description').value = '';        
+                return;
+    
+            }
+
         }
-        else {
-            document.querySelector('#title').value = '';
-            document.querySelector('#description').value = '';        
-            return false;
-        }
+        
+    }
+
+    if (flag == 1) {
+
+        headerList.push(headerDo);
+
     }
 
     document.querySelector('#title').value = '';
@@ -49,7 +73,6 @@ let addingFunction = function () {
     doBlock.innerHTML = `<p class="active-task task"> ${headerDo} - ${bodyDo} </p>`;
 
     doList.appendChild(doBlock);
-    headerList.push(headerDo);
     document.querySelector('.empty').setAttribute('style','display: none');
     
 }
