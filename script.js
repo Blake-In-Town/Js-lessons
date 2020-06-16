@@ -1,86 +1,50 @@
-// Написать простое ToDo App — список задач с возможностью добавления новых пунктов и смены статуса готовности каждого пункта (сделано/не сделано). Страница должна состоять из:
-// 1. самого списка задач (нумерованный список <ol>, пункты-задачи — <li>);
-//  2. поля для ввода названия новой задачи (<input type=“text”);
-//  3. кнопки «Добавить».
-// При нажатии на кнопку «Добавить» задача добавляется в конец списка в качестве нового пункта <li>.
-// Если название задачи не введено, то появляется ошибка (alert или другая реализация) с просьбой заполнить поле.
-// Считать значение, введенное в поле, можно при помощи document.querySelector(‘input’).value.
-// При клике на любую задачу в списке она помечается как выполненная (становится зачеркнутой, тут пригодится CSS-свойство text-decoration: line-through). При повторном клике зачеркивание исчезает.
+// Разработать простой текстовый редактор с возможностью сохранения контента в LocalStorage.
 
-'use strict'
+// Страница должна состоять из:
 
-let btnAdd = document.querySelector('#adding');
-let headerDo;
-let bodyDo;
-let doList = document.querySelector('.num-list');
-let headerList = [];
-let flag;
+// Блока с текстом
+// Кнопки «Редактировать»
+// Кнопок «Сохранить» и «Отмена» (по умолчанию неактивных — disabled)
+// Механика работы страницы:
 
-let addingFunction = function () {  
+// при первой загрузке страницы в блоке с текстом отображается текст по умолчанию (любой);
+// при нажатии на кнопку «Редактировать» блок с текстом становится редактируемым (contenteditable=true), кнопки «Сохранить» и «Отмена» становятся активными, а сама кнопка «Редактировать» — неактивной;
 
-    headerDo = document.querySelector('#title').value;
-    bodyDo = document.querySelector('#description').value;
-    flag = 1;
+// при нажатии на кнопку «Сохранить» содержимое блока с текстом сохраняется в LocalStorage, а режим редактирования отключается (кнопки возвращаются в исходное состояние);
 
-    if (headerDo == '') {
+// при нажатии на кнопку «Отмена» содержимое блока с текстом заменяется на последний сохраненный вариант изLocalStorage, режим редактирования отключается;
 
-        alert('Заполните поле с названием');
-        return false;
+// При следующих перезагрузках страницы содержимое блока с текстом автоматически подтягивается из LocalStorage (последний сохраненный вариант).
 
-    }
-    else {
+let editBtn = document.querySelector('.btn-edit');
+let saveBtn = document.querySelector('.btn-save');
+let resetBtn = document.querySelector('.btn-reset');
+let textBlock = document.querySelector('.change-block');
+let change = textBlock.textContent;
+textBlock.textContent = localStorage.getItem('changeLog');
 
-        headerDo = document.querySelector('#title').value;
 
-    }
+editBtn
+    .addEventListener('click', function(event) {
+        textBlock.setAttribute('contenteditable', 'true');
+        saveBtn.removeAttribute('disabled');
+        resetBtn.removeAttribute('disabled');
 
-    for (let header of headerList) {
+});
 
-        if (headerDo == header) {
+saveBtn
+    .addEventListener('click', function (event) {
+        textBlock.setAttribute('contenteditable', 'false');
+        saveBtn.setAttribute('disabled','');
+        editBtn.setAttribute('disabled','');
+        change = textBlock.textContent;
+        localStorage.setItem('oldLog', localStorage.getItem('changeLog'));
+        localStorage.setItem('changeLog', change);
+    });
 
-            flag = 0;
-            let mark = confirm('Вы добавляете задачу которая уже есть в списке, хотите продолжить?');
-
-            if (mark == true) {
-
-                break;
-
-            }
-
-            else {
-
-                document.querySelector('#title').value = '';
-                document.querySelector('#description').value = '';        
-                return;
-    
-            }
-
-        }
-        
-    }
-
-    if (flag == 1) {
-
-        headerList.push(headerDo);
-
-    }
-
-    document.querySelector('#title').value = '';
-    document.querySelector('#description').value = '';
-
-    let doBlock = document.createElement('li');
-    doBlock.classList.add('num-list-item');
-    doBlock.innerHTML = `<p class="active-task task"> ${headerDo} - ${bodyDo} </p>`;
-
-    doList.appendChild(doBlock);
-    document.querySelector('.empty').setAttribute('style','display: none');
-    
-}
-
-btnAdd.addEventListener('click', addingFunction);
-
-document
-    .querySelector('.num-list')
+resetBtn
     .addEventListener('click', function(event){
-        event.target.classList.toggle('complete-task');
+        textBlock.textContent = localStorage.getItem('oldLog');
+        saveBtn.removeAttribute('disabled');
+        editBtn.removeAttribute('disabled');
     });
