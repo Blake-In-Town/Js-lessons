@@ -19,6 +19,7 @@
 let editBtn = document.querySelector('.btn-edit');
 let saveBtn = document.querySelector('.btn-save');
 let resetBtn = document.querySelector('.btn-reset');
+let colorBtn = document.querySelector('.btn-color');
 let textBlock = document.querySelector('.change-block');
 let change = textBlock.textContent;
 textBlock.textContent = localStorage.getItem('changeLog');
@@ -29,6 +30,8 @@ editBtn
         textBlock.setAttribute('contenteditable', 'true');
         saveBtn.removeAttribute('disabled');
         resetBtn.removeAttribute('disabled');
+        colorBtn.removeAttribute('disabled');
+
 
 });
 
@@ -48,3 +51,35 @@ resetBtn
         saveBtn.removeAttribute('disabled');
         editBtn.removeAttribute('disabled');
     });
+
+//выделение текста
+
+colorBtn
+    .addEventListener('click', function(){
+        changeColor();
+    });
+
+let fragment = {}
+function changeColor() {
+
+    let selection = document.getSelection();
+    let range;
+    // rangeCount – количество диапазонов в выделении, максимум 1 во всех браузерах, кроме Firefox.
+    if (selection.rangeCount && selection.getRangeAt) {
+        range = selection.getRangeAt(0); 
+        // getRangeAt(i) – взять i-ый диапазон, начиная с 0. Во всех браузерах, кроме Firefox, используется только 0.
+    }
+   
+    // Set design mode to on
+    document.designMode = "on";
+    if (range) {
+        selection.removeAllRanges();
+        selection.addRange(range);
+    }
+    // Когда HTML документ переключен в режим редактирования (document.designMode), для него будет доступен метод execCommand, который предоставляет команды для работы с контентом в редактируемой области. Большинство команд влияют на выделение (bold, italics, и т. п.), другие вставляют новые элементы (createLink) или влияют на всю строку (indenting). При использовании contentEditable, вызов execCommand влияет на активный редактируемый элемент.
+    // Colorize text
+    document.execCommand("ForeColor", false, "red");
+    // Set design mode to off
+    document.designMode = "off";
+};
+
