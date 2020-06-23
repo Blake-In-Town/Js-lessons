@@ -40,14 +40,15 @@ saveBtn
         textBlock.setAttribute('contenteditable', 'false');
         saveBtn.setAttribute('disabled','');
         editBtn.setAttribute('disabled','');
-        change = textBlock.textContent;
-        localStorage.setItem('oldLog', localStorage.getItem('changeLog'));
+        change = textBlock.innerHTML.trim();
+
+        localStorage.setItem('oldLog', textBlock.innerHTML.trim());
         localStorage.setItem('changeLog', change);
     });
 
 resetBtn
     .addEventListener('click', function(event){
-        textBlock.textContent = localStorage.getItem('oldLog');
+        textBlock.innerHTML = localStorage.getItem('oldLog');
         saveBtn.removeAttribute('disabled');
         editBtn.removeAttribute('disabled');
     });
@@ -57,9 +58,11 @@ resetBtn
 colorBtn
     .addEventListener('click', function(){
         changeColor();
+        
     });
 
-let fragment = {}
+
+
 function changeColor() {
 
     let selection = document.getSelection();
@@ -67,7 +70,7 @@ function changeColor() {
     // rangeCount – количество диапазонов в выделении, максимум 1 во всех браузерах, кроме Firefox.
     if (selection.rangeCount && selection.getRangeAt) {
         range = selection.getRangeAt(0); 
-        // getRangeAt(i) – взять i-ый диапазон, начиная с 0. Во всех браузерах, кроме Firefox, используется только 0.
+        // getRangeAt(i) – взять i-ый диапазон (всё выделенное), начиная с 0. Во всех браузерах, кроме Firefox, используется только 0.
     }
    
     // Set design mode to on
@@ -78,8 +81,17 @@ function changeColor() {
     }
     // Когда HTML документ переключен в режим редактирования (document.designMode), для него будет доступен метод execCommand, который предоставляет команды для работы с контентом в редактируемой области. Большинство команд влияют на выделение (bold, italics, и т. п.), другие вставляют новые элементы (createLink) или влияют на всю строку (indenting). При использовании contentEditable, вызов execCommand влияет на активный редактируемый элемент.
     // Colorize text
-    document.execCommand("ForeColor", false, "red");
+    if (textBlock.lastChild.color == "#000000") {
+        document.execCommand("ForeColor", false, "green");
+    }
+    else {
+        document.execCommand("ForeColor", false, "black");
+    }
     // Set design mode to off
     document.designMode = "off";
 };
 
+document.addEventListener('DOMContentLoaded', function(){ 
+    // Аналог $(document).ready(function(){
+    textBlock.innerHTML = localStorage.getItem('changeLog');
+});
