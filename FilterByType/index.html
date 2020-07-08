@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">
+		<title>8.7 Обработка исключений</title>
+		<script defer src="jquery-3.3.1.min.js"></script>
+		<script defer src="FilterByType.js"></script>
+	</head>
+<!-- body for previous homework --> 
+	<body style="text-align: center; margin: 0 auto;">
+		
+		<div class="output-block" style="width: 100%; height: auto; border: 1px solid black;">
+			<h1>8.7 Обработка исключений</h1>
+				<p>
+				Написать программу, которая:
+				<br>
+				просит пользователя ввести кусок JavaScript-кода;
+				<br>
+				пытается запустить этот код в строгом режиме (strict mode);
+				<br>
+				если в коде возникла ошибка, перехватывает ее и выводит соответствующее сообщение.
+				<br><br>
+				Написать функцию filterByType, которая принимает любое кол-во аргументов:
+				<br>
+				первый аргумент — это тип данных (number, string или boolean), по которому нужно отфильтровать следующие аргументы (со 2-го и далее);
+				<br>
+				аргументы, начиная со 2-го и далее — любые значения;
+				<br>
+				функция должна возвращать массив с теми аргументами, которые соответствуют типу данных, переданному в первом аргументе.
+			</p>
+			<h2>Результат работы FilterByType представлен в консоли</h2>
+		</div>
+		<div class="output-block" style="    
+			display: flex;
+			width: 30%;
+			height: auto;
+			padding: 10px;
+			margin: 0 auto;">
+			<textarea style="height: 100%; width: 100%;" id="inputBlock">alert('hello');
+			</textarea>
+			<div id="log-block">
+			</div>
+		</div>
+		<button id="confirm">Confirm</button>
+	</body>	
+</html>

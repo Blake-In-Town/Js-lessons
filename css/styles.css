@@ -1,0 +1,21 @@
+html, body {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+a {
+    border: 1px solid black;
+    width: 30%;
+    height: 20em;
+    overflow-y: scroll;
+    margin: 10px;
+    text-decoration: none;
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+}
+
+.hw-Block p {
+    margin: 10px 10px;
+    font-size: 20px;
+    line-height: 1.5;
+}

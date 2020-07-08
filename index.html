@@ -2,66 +2,127 @@
 <html lang="ru">
 	<head>
 		<meta charset="utf-8">
-		<title>Test page</title>
-		<link rel="stylesheet" type="text/css" href="styles.css">
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-		<link rel="stylesheet" type="text/css" href="css/custom.css">
-	
-		<!-- <script defer src="jquery-3.3.1.min.js"></script> -->
+		<title>Homework Java Script</title>
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
 		<script defer src="script.js"></script>
 	</head>
 	<body>
-		<div class="container">
-			<div class="row">
-				<div class="change-block col-sm p-0">
-					<p class="m-0 p-0">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</p></div>
-				
+
+<!-- 
+		<div class="output-block" style="width: 100%; height: auto; border: 1px solid black;">
+			<h2>Результат работы представлен в консоли</h2>
+		</div> -->
+
+		<a href="/UserBase/index.html">
+			<div class="UserBase hw-Block">
+				<h1>6.4 Объекты и конструкторы</h1>
+				<p>
+				Написать простой прототип системы регистрации пользователей. Для этого используйте две функции-конструктора:
+				<br>
+				1. User, которая создает объект типа «пользователь» со следующими свойствами:<br> { // имя firstName: ‘', <br>// фамилия lastName: '’, <br>// дата и время регистрации regDate: ''}. Объекты типа User предназначены для сохранения каждой отдельной записи о пользователе.
+				<br>
+				2. UserList, которая создает объект типа “список пользователей” со следующими свойствами и методами:<br> { // внутреннее свойство-массив, в которое будут попадать объекты типа User users: [],<br> // метод получает в качестве параметра объект типа User и сохраняет его в массив users add: function(user) {},<br> // метод возвращает список пользователей из массива users getAllUsers: function() {}}. Объекты типа UserList предназначены для хранения множества записей типа User. 
+				<br>
+				При запуске программы должно происходить:
+				<br>
+				1. Создавать новый экземпляр объекта UserList (с пустым свойством-массивом users).
+				<br>
+				2. Открываться диалог prompt с предложением ввести имя и фамилию пользователя для регистрации (одной строкой через пробел).
+				<br>
+				3. После нажатия ОК должен создаваться новый экземпляр объекта User с заполнением свойств firstName, lastName и regDate (текущая дата и время).
+				<br>
+				4. Созданный экземпляр объекта должен сохраняться в свойство-массив users созданного ранее объекта типа UserList (при помощи метода add).
+				<br>
+				5. Диалог prompt должен повторяться, пока пользователь не нажмет “Отмена”.
+				<br>
+				6. После нажатия «Отмена» выведите на экран (в консоль или при помощи alert) список всех пользователей с именами и датами регистрации (используйте для этого метод getAllUsers).
+				</p>
 			</div>
-			
-			<div class="row pt-4">
-				<button class="col-md-2 center-block btn-edit">Edit</button>
-				<button class="col-md-2 center-block btn-save" disabled>Save</button>
-				<button class="col-md-2 center-block btn-reset" disabled>Reset</button>
-				<button class="col-md-2 center-block btn-color" disabled>Change color</button>
+		</a>
+		<a href="/ClassScript/index.html">
+			<div class="ClassScript hw-Block">
+				<h1>7.5 Объектно-ориентированное программирование</h1>
+				<p>
+				Создать иерархию сущностей (конструкторов, из которых можно создать экземпляры объектов):
+				<br>
+				базовый конструктор «Транспортное средство» с общими для всех транспортных средств свойствами и методами (на ваше усмотрение);
+				<br>
+				дочерние конструкторы: автомобиль, самолет, корабль, которые наследуют общие свойства и методы от родительского;
+				<br>
+				продемонстрировать, как дочерние сущности могут переопределять родительские свойства и методы в соответствии со своим собственным поведением.
+				</p>
 			</div>
-		</div>
+		</a>
+		<a href="/FilterByType/index.html">
+			<div class="FilterByType hw-Block">
+				<h1>8.7 Обработка исключений</h1>
+				<p>
+				Написать программу, которая:
+				<br>
+				просит пользователя ввести кусок JavaScript-кода;
+				<br>
+				пытается запустить этот код в строгом режиме (strict mode);
+				<br>
+				если в коде возникла ошибка, перехватывает ее и выводит соответствующее сообщение.
+				<br><br>
+				Написать функцию filterByType, которая принимает любое кол-во аргументов:
+				<br>
+				первый аргумент — это тип данных (number, string или boolean), по которому нужно отфильтровать следующие аргументы (со 2-го и далее);
+				<br>
+				аргументы, начиная со 2-го и далее — любые значения;
+				<br>
+				функция должна возвращать массив с теми аргументами, которые соответствуют типу данных, переданному в первом аргументе.
+			</p></div>
+		</a>
+		<a href="/ToDoScript/index.html">
+			<div class="ToDoScript hw-Block">
+				<h1>9.8 JavaScript в браузере; DOM</h1>
+				<p>
+				Написать простое ToDo App — список задач с возможностью добавления новых пунктов и смены статуса готовности каждого пункта (сделано/не сделано). Страница должна состоять из:
+				<br>
+				1. самого списка задач (нумерованный список ol, пункты-задачи — li);
+				<br>
+				2. поля для ввода названия новой задачи (input type=“text”);
+				<br>
+				3. кнопки «Добавить».
+				<br>
+				При нажатии на кнопку «Добавить» задача добавляется в конец списка в качестве нового пункта li.
+				<br>
+				Если название задачи не введено, то появляется ошибка (alert или другая реализация) с просьбой заполнить поле.
+			</p></div>
+		</a>
+		<a href="/LocalStorage/index.html">
+			<div class="LocalStorage hw-Block">
+				<h1>10.9 Web API</h1>
+				<p>
+				Разработать простой текстовый редактор с возможностью сохранения контента в LocalStorage.
+				<br>
+				Страница должна состоять из:
+				<br>
+				Блока с текстом
+				Кнопки «Редактировать»
+				Кнопок «Сохранить» и «Отмена» (по умолчанию неактивных — disabled)
+				<br>
+				Механика работы страницы:
+				<br>
+				при первой загрузке страницы в блоке с текстом отображается текст по умолчанию (любой);
+				при нажатии на кнопку «Редактировать» блок с текстом становится редактируемым (contenteditable=true), кнопки «Сохранить» и «Отмена» становятся активными, а сама кнопка «Редактировать» — неактивной;
+				<br>
+				при нажатии на кнопку «Сохранить» содержимое блока с текстом сохраняется в LocalStorage, а режим редактирования отключается (кнопки возвращаются в исходное состояние);
+				<br>
+				при нажатии на кнопку «Отмена» содержимое блока с текстом заменяется на последний сохраненный вариант изLocalStorage, режим редактирования отключается;
+				<br>
+				При следующих перезагрузках страницы содержимое блока с текстом автоматически подтягивается из LocalStorage (последний сохраненный вариант).
+			</p></div>
+		</a>
+		<a href="/ApiWork/index.html">
+			<div class="ApiWork hw-Block">
+				<h1>11.6 Клиент и сервер</h1>
+				<p>
+				Нужно модифицировать страницу таким образом, чтобы она принимала от пользователя один параметр: строку для поиска (поле для ввода);<br>
+				После ввода данных и нажатия кнопки “Найти”, страница должна отправлять запрос к SWAPI, получать ответ, выводить в список .search_result элементы li c найденными персонажами, если ничего не найдено, то выводить сообщение "Ничего не найдено, попробуйте еще раз!".
+				<br>
+				При нажатии на кнопки с именами персонажей, необходимо вывести в блок .person_data информацию о персонаже используя информацию полученную из JSON ответа к API. Вывести в каждый span указанную информацию.</p></div>
+		</a>
 	</body>
-<!-- <body>
-	<div class="container">
-		<div class="row">
-			 <div class="col-6 list">
-				 <h2 class="mb-4">Список дел:</h2>
-				 <div class="task-list mb-2">
-					<ol class = "num-list"> 
-						<li class="empty">
-							<p class="text-secondary p-3 mb-0 "> Список пуст </p> 
-						</li>
-					</ol>
-				</div>
-			 </div>
- 
-			 <div class="col-6 create">
-				 <h2 class="mb-4">Добавить новое дело</h2>
-				 <div class="p-5" id="property">
-					 <p class="text-secondary">* Название</p>
-					 <input  type="text" class="w-100" id="title"></input>
-					 <p class="text-secondary pt-4">* Описание</p>
-					 <input type="text" class="w-100" id="description"></input>
-					 <button id="adding">Добавить дело</button>
-				 </div>
-			  </div>
-		 </div>
-	 </div>
-</body>	  -->
-<!-- body for previous homework --> 
-	<!-- <body style="text-align: center;">
-		<div class="output-block">
-			<textarea style="height: 100%;" id="inputBlock">
-				alert('hello');
-			</textarea>
-			<div id="log-block">
-			</div>
-		</div>
-		<button id="confirm">Confirm</button>
-	</body>	 -->
 </html>
