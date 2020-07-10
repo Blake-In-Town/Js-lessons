@@ -18,6 +18,18 @@ body, input[text]{
   width: 30%;
 }
 
+#search_category {
+  background-color: #000;
+  color: #FFE81F;
+  padding: 10px 17px;
+  font-size: 16px;
+  border: solid 2px;
+}
+
+  .category_option {
+    margin-top: 20px;
+  }
+
 .search .search_result li{
   list-style-type: none;
   padding: 7px;

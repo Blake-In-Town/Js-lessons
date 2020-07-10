@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>CodePen - SWAPI JS M11</title>
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="style.css">
 
 </head>
 <body>
@@ -11,8 +11,17 @@
 <div class="content">
 
   <div class="search">
-    <div class="search_form"><label>Поиск персонажа: <input type="text" class="person_search" id="person_search_input"> </label>
-      <button id="search_request_btn" class="button">Найти</button></div>
+    <div class="search_form">
+      <label>Поиск персонажа: 
+        <input type="text" class="person_search" id="person_search_input"> 
+      </label>
+      <select id="search_category">
+        <option class="category_option" value="people">Человек</option>
+        <option class="category_option" value="planets">Планета</option>
+        <option class="category_option" value="starships">Корабль</option>
+      </select>
+      <button id="search_request_btn" class="button">Найти</button>
+    </div>
     <ul class="search_result">
     </ul>
   </div>
