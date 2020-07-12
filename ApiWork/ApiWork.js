@@ -2,7 +2,7 @@ let btn = document.querySelector('.button');
 let select = document.querySelector('#search_category');
 let search = document.querySelector('#person_search_input');
 let resultOfSearch = document.querySelector('.search_result');
-let liSearch;
+
 let api = "https://swapi.dev/api/";
 let url = api;
 
@@ -14,7 +14,7 @@ btn.addEventListener('click', function(ev) {
   let url = api;
   url += select.value + "/?search=" + search.value;
   
-  let liObj = [{}];
+  let liSearch = [];
 
   window.fetch(url)
 
@@ -31,6 +31,7 @@ btn.addEventListener('click', function(ev) {
       // console.log(response);
       return response.json();
     })
+
     .then( function(response) {
 
       if (response.count == 0) {
@@ -38,45 +39,48 @@ btn.addEventListener('click', function(ev) {
         return;
       }
 
-      // console.log(response);
+      console.log(response);
       
       let i = 0;
 
         for (let num of response.results) {
-          liSearch = document.createElement('li');
 
-          liSearch.className = num.name;
-          liSearch.innerHTML = num.name;
-          liObj[i] = num.name;
-          liObj[i].name = num.name;
-          liObj[i].height = num.height;
-          liObj[i].mass = num.mass;
-          liObj[i].bY = num.birth_year;
-          liObj[i].films = num.films;
+          liSearch[i] = document.createElement('li');
+          liSearch[i].className = num.name;
+          liSearch[i].innerHTML = num.name;
 
-          resultOfSearch.appendChild(liSearch);
+          liSearch[i].name = num.name;
+          liSearch[i].height = num.height;
+          liSearch[i].mass = num.mass;
+          liSearch[i].bY = num.birth_year;
+          liSearch[i].films = num.films.length;
+
+          resultOfSearch.appendChild(liSearch[i]);
+          
+          console.log(num);
+          // console.log(liSearch[i].name);
+          // console.log(i);
+
+          document.querySelector('.search_result').addEventListener('click', function(event) {
+
+            document.querySelector('#name').innerHTML = event.target.name;
+            document.querySelector("#height").innerHTML = event.target.height;
+            document.querySelector("#mass").innerHTML = event.target.mass;
+            document.querySelector('#birth_year').innerHTML = event.target.bY;
+            document.querySelector("#films_count").innerHTML = event.target.films;
+        
+          });
+          
           i++;
-          // console.log(num);
         }
 
-        for (let massEl of liObj) {
-          for (let obEl in massEl) {
-            console.log(massEl.obEl);
-          }
-        }
+
     });
  
-  
 });
 
 
-// liSearch.addEventListener('click', function(event) {
-//   document.querySelector('#name').innerHTML = event.target.name;
-//   document.querySelector("#height").innerHTML = event.target.height;
-//   document.querySelector("#mass").innerHTML = event.target.mass;
-//   document.querySelector('#birth_year').innerHTML = event.target.bY;
-//   document.querySelector("#films_count").innerHTML = event.target.films;
-// });
+
 
 
 
