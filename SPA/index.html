@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+		<title>Таблица в формате Single Page Application.</title>
+        <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+    crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/styles.css"> 
+
+    <script src="scripts/main.js"></script>
+    
+		
+    </head>
+    <body>
+       <div class="container-fluid condition_block">
+            <form class="form-inline mt-2">
+                <select class="select_list_info col-sm-2 form-control mr-1">
+                    <option value="date" class="option_date">Дата</option>
+                    <option value="name" class="option_name">Название</option>
+                    <option value="count" class="option_count">Количество</option>
+                    <option value="distance" class="option_distance">Расстояние</option>
+        
+                </select>
+                <select class="select_list_operator col-sm-2 form-control mr-1">
+                    <option value="equal"> = (Равно)</option>
+                    <option value="include"> in (Содержит)</option>
+                    <option value="more"> > (Больше)</option>
+                    <option value="less"> < (Меньше)</option>
+                </select>   
+                <input type="text" placeholder="Значение" class="form-control filter_option col-sm-3 mr-1"></input>
+                <button type="button" class="btn btn_result col-sm-2">Поиск по условию</button>
+            </form>
+       </div>
+       <div class="container-fluid result_block">
+        <table class="table mt-3">
+            <thead>
+              <tr>
+                <th>Заголовок 1</th>
+                <th>Заголовок 2</th>
+                <th>Заголовок 3</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>Подвал 1</th>
+                <th>Подвал 2</th>
+                <th>Подвал 3</th>
+              </tr>
+            </tfoot>
+            <tbody>
+              <tr>
+                <td>Ячейка</td>
+                <td>Ячейка</td>
+                <td>Ячейка</td>
+              </tr>
+              <tr>
+                <td>Ячейка</td>
+                <td>Ячейка</td>
+                <td>Ячейка</td>
+              </tr>
+              <tr>
+                <td>Ячейка</td>
+                <td>Ячейка</td>
+                <td>Ячейка</td>
+              </tr>
+            </tbody>
+          </table>
+       </div>
+
+       <!-- Библиотека jQuery -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+
+        <!-- Последний скомпилированный и минимизированный Bootstrap JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    </body>
+</html>
