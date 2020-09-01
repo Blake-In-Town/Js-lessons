@@ -1,13 +1,39 @@
 .football {
+	/* width: 100%;
+	height: 100%;
+	background-size: 100%;
+	background-position: center;
+	background-image: url(/Football_HW/img/field.jpg);
+	 */
 	position: relative;
 	margin-top: 20px;
 	margin-bottom: 20px;
+	;
 }
 
 .field {
 	width: 100%;
 	border-radius: 10px;
 }
+
+.score {
+	display: flex;
+	flex-wrap: wrap;
+	text-align: center;
+	position: absolute;
+	margin: 0 auto;
+	width: 10%;
+	height: 7%;
+	z-index: 1;
+	background: white;
+	border-radius: 25px;
+	border: 1px solid;
+	left: 50%;
+	margin-left:-5%
+}
+	.home, .guest {
+		width: 50%;
+	}
 
 .ball {
 	position: absolute;
@@ -16,7 +42,6 @@
 	width: 100px;
 	height: 100px;
 }
-
 .rotate360 {
     transition: transform 1s;
     transform: rotate(360deg);

@@ -6,7 +6,11 @@ $('.ball').on('click', function () {
 let footballField = $('.ball').parent();
 let fieldMin = 0;
 let fieldMax = footballField.height() - 120;
-let fieldWidth = Math.floor(footballField.width()) - 120;
+let fieldWidth = Math.floor(footballField.width()) - 100
+let score = {
+	left: 0,
+	right: 0
+};
 
 
 function hitBall () {
@@ -28,10 +32,18 @@ function hitBall () {
 		() => {
 			position = $('.ball').position();
 			top = Math.round(position.top);
-			if (top < (footballField.height() / 2) + 25 )
+			if ( top < (footballField.height() / 2) + 25  
+			&& ( top > ( footballField.height() / 2) - 95 ) )
 			{
-				if (top > (footballField.height() / 2) - 95 ) {
-					alert("GOAL!!!");
+				alert("GOAL!!!");
+				if ( leftBall == 0) {
+					
+					score.left++;
+					$('.g-scr').text(score.left);
+				}
+				else {
+					score.right++;
+					$('.h-scr').text(score.right);
 				}
 			}
 		}
